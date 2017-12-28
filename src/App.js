@@ -1,11 +1,31 @@
-import React, { Component } from 'react';
+// @flow
+import React from 'react';
+import { Provider } from 'react-redux';
+import { HashRouter, Route } from 'react-router-dom';
+import { createStore, applyMiddleware } from 'redux';
+import thunk from 'redux-thunk';
+import 'bulma/css/bulma.css';
 
-class App extends Component {
+import Media from './scenes/Media';
+import reducer from './store';
+
+import './styles.css';
+
+const store = createStore(
+  reducer,
+  applyMiddleware(thunk),
+);
+
+class App extends React.Component<{}> {
   render() {
     return (
-      <div className="App">
-        <h1>JJX Watch</h1>
-      </div>
+      <Provider store={store} >
+        <HashRouter>
+          <div>
+            <Route exact path="/" component={Media} />
+          </div>
+        </HashRouter>
+      </Provider>
     );
   }
 }
