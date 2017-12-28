@@ -1,10 +1,14 @@
 // @flow
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Link } from 'react-router-dom';
+
+import type { Dispatch } from 'redux';
 
 import { fetchMedia } from 'services/media/actions';
 import './styles.css';
 
+import type { State } from '../../store';
 import type { MediaState } from 'services/media/reducer';
 
 type StateProps = {
@@ -23,20 +27,27 @@ class Media extends Component<MediaProps> {
   }
 
   render() {
-    console.log(this.props.media);
+    const shows = this.props.media.shows.map(s => (
+      <li key={s.ref}><Link to={s.ref}>{s.title}</Link></li>
+    ));
+
+    const movies = this.props.media.movies.map(m => (
+      <li key={m.ref}><a href={m.ref}>{m.title}</a></li>
+    ));
 
     return (
       <div className="media-home">
-        <section className="hero is-primary">
-          <div className="hero-body">
-            <div className="container">
-              <h1 className="title"> Watch </h1>
-            </div>
-          </div>
-        </section>
         <section className="section">
           <div className="container">
-            <h1>Media</h1>
+            <h2 className="subtitle is-3">Shows</h2>
+            <ul>
+              {shows}
+            </ul>
+
+            <h2 className="subtitle is-3">Movies</h2>
+            <ul>
+              {movies}
+            </ul>
           </div>
         </section>
       </div>
@@ -44,11 +55,11 @@ class Media extends Component<MediaProps> {
   }
 }
 
-const mapStateToProps = (state): StateProps => ({
+const mapStateToProps = (state: State): StateProps => ({
   media: state.media,
 });
 
-const mapDispatchToProps = (dispatch): DispatchProps => ({
+const mapDispatchToProps = (dispatch: Dispatch<*>): DispatchProps => ({
   fetchMedia: () => { dispatch(fetchMedia()) },
 });
 

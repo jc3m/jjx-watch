@@ -53,7 +53,7 @@ function receiveMediaFailure(reason: string): ReceiveMediaFailureAction {
 }
 
 export function fetchMedia() {
-  return (dispatch: Dispatch<*>) => {
+  return (dispatch: Dispatch<MediaAction>) => {
     dispatch(requestMedia());
     getMedia()
       .then((json: MediaData) => {

@@ -6,10 +6,9 @@ import { createStore, applyMiddleware } from 'redux';
 import thunk from 'redux-thunk';
 import 'bulma/css/bulma.css';
 
+import Header from './components/Header';
 import Media from './scenes/Media';
 import reducer from './store';
-
-import './styles.css';
 
 const store = createStore(
   reducer,
@@ -22,6 +21,7 @@ class App extends React.Component<{}> {
       <Provider store={store} >
         <HashRouter>
           <div>
+            <Header />
             <Route exact path="/" component={Media} />
           </div>
         </HashRouter>

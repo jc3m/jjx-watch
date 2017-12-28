@@ -1,18 +1,7 @@
-.media-wrapper {
-	margin-top: 15px;
+.media-home .section {
+    padding-top: 1.5rem;
 }
 
-.media-list {
-    margin-top: 30px;
-    text-align: left;
-}
-
-.media-list ul {
-    margin-bottom: 25px;
-    padding-left: 15px;
-}
-
-.media-list ul li {
-    font-size: 14px;
-    list-style: none;
+.media-home h2.subtitle {
+    margin: 1.5rem 0 0.25rem 0;
 }
