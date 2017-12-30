@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-import type { Dispatch } from 'redux';
+import type { Dispatch } from 'redux-thunk';
 
 import Header from 'components/Header';
 import { fetchMedia } from 'services/media/actions';
@@ -29,7 +29,7 @@ class Media extends Component<MediaProps> {
 
   render() {
     const shows = this.props.media.shows.map(s => (
-      <li key={s.ref}><Link to={s.ref}>{s.title}</Link></li>
+      <li key={s.showId}><Link to={`/s/${s.showId}`}>{s.title}</Link></li>
     ));
 
     const movies = this.props.media.movies.map(m => (

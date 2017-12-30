@@ -14,11 +14,16 @@ export type Media = {
   ref: string,
 };
 
+export type ShowData = {
+  title: string,
+  showId: string,
+};
+
 export type MediaState = {
   status: MediaStatus,
   errorMessage: ?string,
   movies: Media[],
-  shows: Media[],
+  shows: ShowData[],
 };
 
 const initialState: MediaState = {

@@ -3,7 +3,7 @@ import type { Dispatch } from 'redux';
 
 import { getMedia } from '../api/media';
 
-import type { Media } from './reducer';
+import type { Media, ShowData } from './reducer';
 
 export const REQUEST_MEDIA: 'REQUEST_MEDIA' = 'REQUEST_MEDIA';
 export const RECEIVE_MEDIA_SUCCESS: 'RECEIVE_MEDIA_SUCCESS' = 'RECEIVE_MEDIA_SUCCESS';
@@ -15,7 +15,7 @@ type RequestMediaAction = {
 
 export type MediaData = {
   movies: Media[],
-  shows: Media[],
+  shows: ShowData[],
 }
 type ReceiveMediaSuccessAction = {
   type: 'RECEIVE_MEDIA_SUCCESS',
