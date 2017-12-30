@@ -5,6 +5,7 @@ import { Link } from 'react-router-dom';
 
 import type { Dispatch } from 'redux';
 
+import Header from 'components/Header';
 import { fetchMedia } from 'services/media/actions';
 import './styles.css';
 
@@ -37,6 +38,8 @@ class Media extends Component<MediaProps> {
 
     return (
       <div className="media-home">
+        <Header text="Watch" />
+
         <section className="section">
           <div className="container">
             <h2 className="subtitle is-3">Shows</h2>
