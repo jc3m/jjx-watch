@@ -6,9 +6,13 @@ import type { Dispatch } from 'redux-thunk';
 import type { Match } from 'react-router-dom';
 
 import Header from 'components/Header';
+import Breadcrumbs from 'components/Breadcrumbs';
 import { fetchShow } from 'services/show/actions';
+import { setBreadcrumbs } from 'services/ui/actions';
 import type { State } from 'store';
 import type { ShowData, EpisodeData } from 'services/show/reducer';
+import type { BreadcrumbLink } from 'services/ui/reducer';
+
 
 type SeasonProps = {
   season: number,
@@ -38,6 +42,7 @@ type StateProps = {
 
 type DispatchProps = {
   fetchShow: (string) => void,
+  setBreadcrumbs: (BreadcrumbLink[]) => void,
 }
 
 type Props = {
@@ -60,6 +65,11 @@ class Show extends Component<P> {
 
     if (show && show.status === 'RECEIVED') {
       const { title, episodes } = show;
+
+      this.props.setBreadcrumbs([
+        { text: 'Home', ref: '/' },
+        { text: title, ref: '/' },
+      ]);
 
       episodes.sort((a, b) => {
         if (a.season < b.season) {
@@ -91,7 +101,8 @@ class Show extends Component<P> {
       return (
         <div className="show">
           <Header text={title} />
-          <section className="section" style={{ paddingTop: "1.5rem" }}>
+          <Breadcrumbs />
+          <section className="section" style={{ paddingTop: "0rem" }}>
             <div className="container">
               { eps }
             </div>
@@ -116,6 +127,7 @@ const mapStateToProps = (state: State) => ({
 
 const mapDispatchToProps = (dispatch: Dispatch) => ({
   fetchShow: (showId: string) => { dispatch(fetchShow(showId)); },
+  setBreadcrumbs: (breadcrumbs) => { dispatch(setBreadcrumbs(breadcrumbs)) },
 });
 
 export default withRouter(connect(mapStateToProps, mapDispatchToProps)(Show));
